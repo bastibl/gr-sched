@@ -33,15 +33,15 @@ msg_forward_impl::msg_forward_impl()
     : gr::block("msg_forward", gr::io_signature::make(0, 0, 0),
               gr::io_signature::make(0, 0, 0)) {
 
-    message_port_register_out("out");
-    message_port_register_in("in");
-    set_msg_handler("in", boost::bind(&msg_forward_impl::handle_msg, this, _1));
+    message_port_register_out(pmt::mp("out"));
+    message_port_register_in(pmt::mp("in"));
+    set_msg_handler(pmt::mp("in"), boost::bind(&msg_forward_impl::handle_msg, this, _1));
 }
 
 msg_forward_impl::~msg_forward_impl() {}
 
 void msg_forward_impl::handle_msg(pmt::pmt_t pdu) {
-    message_port_pub("out", pdu);
+    message_port_pub(pmt::mp("out"), pdu);
 }
 
 

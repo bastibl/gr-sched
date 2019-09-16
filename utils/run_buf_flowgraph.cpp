@@ -22,7 +22,7 @@ run_buf_flowgraph::run_buf_flowgraph(int pipes, int stages,
     d_pipes(pipes), d_stages(stages),
     d_samples(samples), d_config(config) {
 
-    this->tb = gr::top_block::make("buf_flowgraph");
+    this->tb = gr::make_top_block("buf_flowgraph");
 
     if(d_config == "fork") {
         create_fork();
@@ -144,7 +144,7 @@ int main (int argc, char **argv) {
         std::cout << boost::format("rt_prio     %1$20s") % rt_prio << std::endl;
         std::cout << boost::format("config      %1$20s") % config << std::endl;
 
-        std::cout << std::endl << runner->tb->dot_graph() << std::endl;
+        std::cout << std::endl << gr::dot_graph(runner->tb) << std::endl;
     }
 
     auto start = std::chrono::high_resolution_clock::now();

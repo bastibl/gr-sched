@@ -27,7 +27,7 @@ public:
         uint64_t samples, std::string config);
 	~run_opti_flowgraph();
 
-    top_block::sptr d_tb;
+	top_block_sptr d_tb;
     std::vector<blocks::copy::sptr> d_blocks;
 };
 

@@ -26,7 +26,7 @@ public:
         uint64_t samples, std::string config);
 	~run_buf_flowgraph();
 
-    top_block::sptr tb;
+	top_block_sptr tb;
     std::vector<blocks::copy::sptr> blocks;
 };
 

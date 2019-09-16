@@ -24,7 +24,7 @@ run_opti_flowgraph::run_opti_flowgraph(int pipes, int stages,
     d_pipes(pipes), d_stages(stages),
     d_samples(samples), d_config(config) {
 
-    d_tb = gr::top_block::make("msg_flowgraph");
+    d_tb = gr::make_top_block("msg_flowgraph");
 
     if(d_config == "default") {
         create_default();
@@ -184,7 +184,7 @@ int main (int argc, char **argv) {
         std::cout << boost::format("rt_prio     %1$20s") % rt_prio << std::endl;
         std::cout << boost::format("config      %1$20s") % config << std::endl;
 
-        std::cout << std::endl << runner->d_tb->dot_graph() << std::endl;
+        std::cout << std::endl << gr::dot_graph(runner->d_tb) << std::endl;
     }
 
     auto start = std::chrono::high_resolution_clock::now();
