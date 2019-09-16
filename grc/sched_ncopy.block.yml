@@ -1,0 +1,24 @@
+id: sched_ncopy
+label: ncopy
+category: '[sched]'
+
+templates:
+  imports: import sched
+  make: sched.ncopy(${ntimes})
+
+parameters:
+- id: ntimes
+  label: n internal copies
+  default: '2'
+  dtype: float
+
+inputs:
+- label: in
+  domain: stream
+  dtype: float
+
+- label: out
+  domain: stream
+  dtype: float
+
+file_format: 1

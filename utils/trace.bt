@@ -1,0 +1,64 @@
+//BEGIN
+//{
+//  printf("time,block\n");
+//}
+
+//uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr5block14system_handlerEN5boost10shared_ptrIN3pmt8pmt_baseEEE
+//{
+//
+//   //printf("%12u [%d/%d] %14s system_handler()\n", nsecs/1000, pid, tid, comm);
+//   printf("%u,%s\n", nsecs/1000, comm);
+//}
+
+//uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr14block_executor17run_one_iterationEv
+//{
+//	printf("%12u [%d/%d] %14s run_one_iteration()\n", nsecs/1000, pid, tid, comm);
+//
+//    @[probe] = count();
+//}
+
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr14block_executor17run_one_iterationEv
+//{
+//	printf("%12u [%d/%d] %14s run_one_iteration() returned %d\n", nsecs/1000, pid, tid, comm, retval);
+//}
+
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-blocks.so:_ZTv0_n152_N2gr6blocks9copy_impl12general_workEiRSt6vectorIiSaIiEERS2_IPKvSaIS7_EERS2_IPvSaISB_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-blocks.so:_ZTv0_n152_N2gr6blocks15interleave_impl12general_workEiRSt6vectorIiSaIiEERS2_IPKvSaIS7_EERS2_IPvSaISB_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr5block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr10sync_block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr14sync_decimator12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr17sync_interpolator12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+uprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr19tagged_stream_block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE
+{
+
+   //printf("%10u [%d/%d] %10s gw() output_items: %d\n", nsecs/1000, pid, tid, comm, arg1);
+   @ = hist(arg1);
+
+   //@[comm] = nsecs;
+}
+
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-blocks.so:_ZTv0_n152_N2gr6blocks9copy_impl12general_workEiRSt6vectorIiSaIiEERS2_IPKvSaIS7_EERS2_IPvSaISB_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-blocks.so:_ZTv0_n152_N2gr6blocks15interleave_impl12general_workEiRSt6vectorIiSaIiEERS2_IPKvSaIS7_EERS2_IPvSaISB_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr5block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr10sync_block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr14sync_decimator12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr17sync_interpolator12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE,
+//uretprobe:/home/basti/usr/gnuradio/lib/libgnuradio-runtime.so:_ZN2gr19tagged_stream_block12general_workEiRSt6vectorIiSaIiEERS1_IPKvSaIS6_EERS1_IPvSaISA_EE
+//{
+//
+//   printf("%u.%u,%u,%s,%u\n", elapsed/1000, elapsed%1000, (nsecs-@[comm]), comm, retval);
+//}
+
+//END
+//{
+//	printf("\nI/O size (bytes) histograms by process name:");
+//}
+
+
+
+//tracepoint:sched:sched_migrate_task
+//{
+//   printf("%12u [%7d] %16s migrate  %d->%d\n", nsecs/1000, args->pid, args->comm, args->orig_cpu, args->dest_cpu);
+//
+//   @[args->dest_cpu+1] = lhist(args->orig_cpu,0,8,1);
+//}
