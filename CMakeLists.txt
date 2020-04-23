@@ -85,7 +85,7 @@ ENDIF()
 ########################################################################
 # Install directories
 ########################################################################
-find_package(Gnuradio "3.8" REQUIRED COMPONENTS "blocks")
+find_package(Gnuradio "3.9" REQUIRED COMPONENTS "blocks")
 include(GrVersion)
 
 include(GrPlatform) #define LIB_SUFFIX
