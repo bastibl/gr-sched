@@ -167,5 +167,5 @@ add_subdirectory(grc)
 ########################################################################
 
 install(FILES cmake/Modules/schedConfig.cmake
-    DESTINATION ${CMAKE_MODULES_DIR}/sched
+    DESTINATION ${CMAKE_MODULES_DIR}/gnuradio-sched
 )
