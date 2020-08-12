@@ -35,7 +35,7 @@ msg_forward_impl::msg_forward_impl()
 
     message_port_register_out(pmt::mp("out"));
     message_port_register_in(pmt::mp("in"));
-    set_msg_handler(pmt::mp("in"), boost::bind(&msg_forward_impl::handle_msg, this, _1));
+    set_msg_handler(pmt::mp("in"), boost::bind(&msg_forward_impl::handle_msg, this, boost::placeholders::_1));
 }
 
 msg_forward_impl::~msg_forward_impl() {}
