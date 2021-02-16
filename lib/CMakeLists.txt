@@ -26,6 +26,7 @@ include(GrPlatform) #define LIB_SUFFIX
 list(APPEND sched_sources
     ncopy_impl.cc
     msg_forward_impl.cc
+    copy_rand_impl.cc
 )
 
 set(sched_sources "${sched_sources}" PARENT_SCOPE)

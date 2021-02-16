@@ -24,5 +24,6 @@
 install(FILES
     api.h
     ncopy.h
-    msg_forward.h DESTINATION include/sched
+    msg_forward.h
+    copy_rand.h DESTINATION include/sched
 )

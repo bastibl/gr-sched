@@ -20,5 +20,6 @@
 
 install(FILES
     sched_ncopy.block.yml
-    sched_msg_forward.block.yml DESTINATION share/gnuradio/grc/blocks
+    sched_msg_forward.block.yml
+    sched_copy_rand.block.yml DESTINATION share/gnuradio/grc/blocks
 )
