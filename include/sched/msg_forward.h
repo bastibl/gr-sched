@@ -21,35 +21,34 @@
 #ifndef INCLUDED_SCHED_MSG_FORWARD_H
 #define INCLUDED_SCHED_MSG_FORWARD_H
 
-#include <sched/api.h>
 #include <gnuradio/block.h>
+#include <sched/api.h>
 
 namespace gr {
-  namespace sched {
+namespace sched {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup sched
+ *
+ */
+class SCHED_API msg_forward : virtual public gr::block
+{
+public:
+    typedef std::shared_ptr<msg_forward> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup sched
+     * \brief Return a shared_ptr to a new instance of sched::msg_forward.
      *
+     * To avoid accidental use of raw pointers, sched::msg_forward's
+     * constructor is in a private implementation
+     * class. sched::msg_forward::make is the public interface for
+     * creating new instances.
      */
-    class SCHED_API msg_forward : virtual public gr::block
-    {
-     public:
-      typedef std::shared_ptr<msg_forward> sptr;
+    static sptr make();
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of sched::msg_forward.
-       *
-       * To avoid accidental use of raw pointers, sched::msg_forward's
-       * constructor is in a private implementation
-       * class. sched::msg_forward::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make();
-    };
-
-  } // namespace sched
+} // namespace sched
 } // namespace gr
 
 #endif /* INCLUDED_SCHED_MSG_FORWARD_H */
-

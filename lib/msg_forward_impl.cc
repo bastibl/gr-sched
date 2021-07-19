@@ -25,22 +25,27 @@
 namespace gr {
 namespace sched {
 
-msg_forward::sptr msg_forward::make() {
+msg_forward::sptr msg_forward::make()
+{
     return gnuradio::get_initial_sptr(new msg_forward_impl());
 }
 
 msg_forward_impl::msg_forward_impl()
-    : gr::block("msg_forward", gr::io_signature::make(0, 0, 0),
-              gr::io_signature::make(0, 0, 0)) {
+    : gr::block(
+          "msg_forward", gr::io_signature::make(0, 0, 0), gr::io_signature::make(0, 0, 0))
+{
 
     message_port_register_out(pmt::mp("out"));
     message_port_register_in(pmt::mp("in"));
-    set_msg_handler(pmt::mp("in"), boost::bind(&msg_forward_impl::handle_msg, this, boost::placeholders::_1));
+    set_msg_handler(
+        pmt::mp("in"),
+        boost::bind(&msg_forward_impl::handle_msg, this, boost::placeholders::_1));
 }
 
 msg_forward_impl::~msg_forward_impl() {}
 
-void msg_forward_impl::handle_msg(pmt::pmt_t pdu) {
+void msg_forward_impl::handle_msg(pmt::pmt_t pdu)
+{
     message_port_pub(pmt::mp("out"), pdu);
 }
 

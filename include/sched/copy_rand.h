@@ -21,35 +21,34 @@
 #ifndef INCLUDED_SCHED_COPY_RAND_H
 #define INCLUDED_SCHED_COPY_RAND_H
 
-#include <sched/api.h>
 #include <gnuradio/block.h>
+#include <sched/api.h>
 
 namespace gr {
-  namespace sched {
+namespace sched {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup sched
+ *
+ */
+class SCHED_API copy_rand : virtual public gr::block
+{
+public:
+    typedef std::shared_ptr<copy_rand> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup sched
+     * \brief Return a shared_ptr to a new instance of sched::copy_rand.
      *
+     * To avoid accidental use of raw pointers, sched::copy_rand's
+     * constructor is in a private implementation
+     * class. sched::copy_rand::make is the public interface for
+     * creating new instances.
      */
-    class SCHED_API copy_rand : virtual public gr::block
-    {
-     public:
-      typedef std::shared_ptr<copy_rand> sptr;
+    static sptr make(size_t item_size, size_t max_copy = 0xffffffff);
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of sched::copy_rand.
-       *
-       * To avoid accidental use of raw pointers, sched::copy_rand's
-       * constructor is in a private implementation
-       * class. sched::copy_rand::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(size_t item_size, size_t max_copy=0xffffffff);
-    };
-
-  } // namespace sched
+} // namespace sched
 } // namespace gr
 
 #endif /* INCLUDED_SCHED_COPY_RAND_H */
-

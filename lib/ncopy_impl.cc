@@ -22,62 +22,57 @@
 #include "config.h"
 #endif
 
-#include <gnuradio/io_signature.h>
 #include "ncopy_impl.h"
+#include <gnuradio/io_signature.h>
 
 #include <new>
 
 namespace gr {
-  namespace sched {
+namespace sched {
 
-    ncopy::sptr
-    ncopy::make(int ntimes)
-    {
-      return gnuradio::get_initial_sptr
-        (new ncopy_impl(ntimes));
+ncopy::sptr ncopy::make(int ntimes)
+{
+    return gnuradio::get_initial_sptr(new ncopy_impl(ntimes));
+}
+
+
+ncopy_impl::ncopy_impl(int ntimes)
+    : gr::sync_block("ncopy",
+                     gr::io_signature::make(1, 1, sizeof(float)),
+                     gr::io_signature::make(1, 1, sizeof(float))),
+      d_n(ntimes)
+{
+
+    if (ntimes > 99) {
+        throw std::bad_alloc();
     }
+}
 
+ncopy_impl::~ncopy_impl() {}
 
-    ncopy_impl::ncopy_impl(int ntimes)
-        : gr::sync_block("ncopy",
-              gr::io_signature::make(1, 1, sizeof(float)),
-                gr::io_signature::make(1, 1, sizeof(float))), d_n(ntimes)
-    {
+int ncopy_impl::work(int noutput_items,
+                     gr_vector_const_void_star& input_items,
+                     gr_vector_void_star& output_items)
+{
 
-        if(ntimes > 99) {
-             throw std::bad_alloc();
-        }    
-    }
+    const float* in = (const float*)input_items[0];
+    float* out = (float*)output_items[0];
 
-    ncopy_impl::~ncopy_impl()
-    {
-    }
-
-    int
-     ncopy_impl::work(int noutput_items,
-        gr_vector_const_void_star &input_items,
-        gr_vector_void_star &output_items)
-    {
-
-        const float *in = (const float *) input_items[0];
-        float *out = (float *) output_items[0];
-
-        if(d_n < 2) {
-            std::memcpy(out, in, noutput_items * sizeof(float));
-            return noutput_items;
-        }
-
-        std::memcpy(buffers[0], in, noutput_items * sizeof(float));
-
-        for(int i = 0; i < d_n - 2; i++) {
-            std::memcpy(buffers[i+1], buffers[i], noutput_items * sizeof(float));
-        }
-
-        std::memcpy(out, buffers[d_n-2], noutput_items * sizeof(float));
-
+    if (d_n < 2) {
+        std::memcpy(out, in, noutput_items * sizeof(float));
         return noutput_items;
     }
 
-  } /* namespace sched */
-} /* namespace gr */
+    std::memcpy(buffers[0], in, noutput_items * sizeof(float));
 
+    for (int i = 0; i < d_n - 2; i++) {
+        std::memcpy(buffers[i + 1], buffers[i], noutput_items * sizeof(float));
+    }
+
+    std::memcpy(out, buffers[d_n - 2], noutput_items * sizeof(float));
+
+    return noutput_items;
+}
+
+} /* namespace sched */
+} /* namespace gr */
