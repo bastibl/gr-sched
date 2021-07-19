@@ -35,7 +35,7 @@ namespace gr {
     class SCHED_API ncopy : virtual public gr::sync_block
     {
      public:
-      typedef boost::shared_ptr<ncopy> sptr;
+      typedef std::shared_ptr<ncopy> sptr;
 
       /*!
        * \brief Return a shared_ptr to a new instance of sched::ncopy.

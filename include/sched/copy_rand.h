@@ -35,7 +35,7 @@ namespace gr {
     class SCHED_API copy_rand : virtual public gr::block
     {
      public:
-      typedef boost::shared_ptr<copy_rand> sptr;
+      typedef std::shared_ptr<copy_rand> sptr;
 
       /*!
        * \brief Return a shared_ptr to a new instance of sched::copy_rand.

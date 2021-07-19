@@ -1,2 +1,6 @@
+*~
+*.pyc
+*.pyo
+build*/
+examples/grc/*.py
 utils/perf-data*
-

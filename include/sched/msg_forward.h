@@ -35,7 +35,7 @@ namespace gr {
     class SCHED_API msg_forward : virtual public gr::block
     {
      public:
-      typedef boost::shared_ptr<msg_forward> sptr;
+      typedef std::shared_ptr<msg_forward> sptr;
 
       /*!
        * \brief Return a shared_ptr to a new instance of sched::msg_forward.
