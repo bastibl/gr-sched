@@ -28,10 +28,9 @@
 
 #include "qa_sched.h"
 
-CppUnit::TestSuite *
-qa_sched::suite()
+CppUnit::TestSuite* qa_sched::suite()
 {
-  CppUnit::TestSuite *s = new CppUnit::TestSuite("sched");
+    CppUnit::TestSuite* s = new CppUnit::TestSuite("sched");
 
-  return s;
+    return s;
 }

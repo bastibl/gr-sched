@@ -26,7 +26,8 @@
 namespace gr {
 namespace sched {
 
-class msg_forward_impl : public msg_forward {
+class msg_forward_impl : public msg_forward
+{
 private:
     // Nothing to declare in this block.
     void handle_msg(pmt::pmt_t pdu);

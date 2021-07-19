@@ -24,28 +24,25 @@
 #include <sched/ncopy.h>
 
 namespace gr {
-  namespace sched {
+namespace sched {
 
-    class ncopy_impl : public ncopy
-    {
-     private:
-        int d_n;
-        float buffers[100][32768];
+class ncopy_impl : public ncopy
+{
+private:
+    int d_n;
+    float buffers[100][32768];
 
-     public:
-      ncopy_impl(int ntimes);
-      ~ncopy_impl();
+public:
+    ncopy_impl(int ntimes);
+    ~ncopy_impl();
 
-      // Where all the action really happens
-      int work(
-              int noutput_items,
-              gr_vector_const_void_star &input_items,
-              gr_vector_void_star &output_items
-      );
-    };
+    // Where all the action really happens
+    int work(int noutput_items,
+             gr_vector_const_void_star& input_items,
+             gr_vector_void_star& output_items);
+};
 
-  } // namespace sched
+} // namespace sched
 } // namespace gr
 
 #endif /* INCLUDED_SCHED_NCOPY_IMPL_H */
-

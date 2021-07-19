@@ -31,9 +31,9 @@
 
 class __GR_ATTR_EXPORT qa_sched
 {
- public:
-  //! return suite of tests for all of gr-sched directory
-  static CppUnit::TestSuite *suite();
+public:
+    //! return suite of tests for all of gr-sched directory
+    static CppUnit::TestSuite* suite();
 };
 
 #endif /* _QA_SCHED_H_ */

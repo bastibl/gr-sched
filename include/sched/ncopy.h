@@ -21,35 +21,34 @@
 #ifndef INCLUDED_SCHED_NCOPY_H
 #define INCLUDED_SCHED_NCOPY_H
 
-#include <sched/api.h>
 #include <gnuradio/sync_block.h>
+#include <sched/api.h>
 
 namespace gr {
-  namespace sched {
+namespace sched {
+
+/*!
+ * \brief <+description of block+>
+ * \ingroup sched
+ *
+ */
+class SCHED_API ncopy : virtual public gr::sync_block
+{
+public:
+    typedef boost::shared_ptr<ncopy> sptr;
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup sched
+     * \brief Return a shared_ptr to a new instance of sched::ncopy.
      *
+     * To avoid accidental use of raw pointers, sched::ncopy's
+     * constructor is in a private implementation
+     * class. sched::ncopy::make is the public interface for
+     * creating new instances.
      */
-    class SCHED_API ncopy : virtual public gr::sync_block
-    {
-     public:
-      typedef boost::shared_ptr<ncopy> sptr;
+    static sptr make(int ntimes);
+};
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of sched::ncopy.
-       *
-       * To avoid accidental use of raw pointers, sched::ncopy's
-       * constructor is in a private implementation
-       * class. sched::ncopy::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(int ntimes);
-    };
-
-  } // namespace sched
+} // namespace sched
 } // namespace gr
 
 #endif /* INCLUDED_SCHED_NCOPY_H */
-

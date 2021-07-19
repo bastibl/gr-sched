@@ -26,9 +26,9 @@
 #include <gnuradio/attributes.h>
 
 #ifdef gnuradio_sched_EXPORTS
-#  define SCHED_API __GR_ATTR_EXPORT
+#define SCHED_API __GR_ATTR_EXPORT
 #else
-#  define SCHED_API __GR_ATTR_IMPORT
+#define SCHED_API __GR_ATTR_IMPORT
 #endif
 
 #endif /* INCLUDED_SCHED_API_H */
