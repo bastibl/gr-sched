@@ -27,7 +27,7 @@ null_source_latency_impl::null_source_latency_impl(size_t item_size, uint64_t gr
       d_item_size(item_size),
       gr::sync_block("null_source_latency",
                      gr::io_signature::make(0, 0, 0),
-                     gr::io_signature::make(1, 1, sizeof(item_size)))
+                     gr::io_signature::make(1, 1, item_size))
 {
 }
 
@@ -47,7 +47,7 @@ int null_source_latency_impl::work(int noutput_items,
     uint64_t items = nitems_written(0);
     uint64_t before = items / d_granularity;
     uint64_t after = (items + noutput_items) / d_granularity;
-    for(int i = 1; i <= (before - after); i++) {
+    for(int i = 1; i <= (after - before); i++) {
         tracepoint(null_rand_latency, tx, unique_id(), before + i * d_granularity);
     }
 

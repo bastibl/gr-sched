@@ -43,7 +43,7 @@ int null_sink_latency_impl::work(int noutput_items,
     uint64_t items = nitems_read(0);
     uint64_t before = items / d_granularity;
     uint64_t after = (items + noutput_items) / d_granularity;
-    for(int i = 1; i <= (before - after); i++) {
+    for(int i = 1; i <= (after - before); i++) {
         tracepoint(null_rand_latency, rx, unique_id(), before + i * d_granularity);
     }
 
