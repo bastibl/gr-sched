@@ -11,11 +11,8 @@
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
 
-include (FindLTTngUST REQUIRED)
-
+include(FindLTTngUST REQUIRED)
 include_directories(.)
-# add_library(tracepoint-provider STATIC tp.cpp)
-# target_link_libraries(tracepoint-provider LTTng::UST)
 
 list(APPEND sched_sources
     copy_rand_impl.cc
@@ -53,7 +50,7 @@ endif(APPLE)
 # Install built library files
 ########################################################################
 include(GrMiscUtils)
-GR_LIBRARY_FOO(gnuradio-sched)
+GR_LIBRARY_FOO(gnuradio-sched LTTngUST)
 
 ########################################################################
 # Print summary
