@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(null_source_latency.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(85a813519d635917a989d9b8a2ac8ae9)                     */
+/* BINDTOOL_HEADER_FILE_HASH(f388fd5235e20fadeaadab87c9964d48)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -30,13 +30,15 @@ namespace py = pybind11;
 void bind_null_source_latency(py::module& m)
 {
 
-    using null_source_latency    = gr::sched::null_source_latency;
+    using null_source_latency    = ::gr::sched::null_source_latency;
 
 
     py::class_<null_source_latency, gr::sync_block, gr::block, gr::basic_block,
         std::shared_ptr<null_source_latency>>(m, "null_source_latency", D(null_source_latency))
 
         .def(py::init(&null_source_latency::make),
+           py::arg("item_size"),
+           py::arg("granularity"),
            D(null_source_latency,make)
         )
         

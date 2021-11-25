@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(null_sink_latency.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(88fc304f706006cfec58341447772607)                     */
+/* BINDTOOL_HEADER_FILE_HASH(58ee2d87b69870f16fe6f3c961f8fade)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -30,13 +30,15 @@ namespace py = pybind11;
 void bind_null_sink_latency(py::module& m)
 {
 
-    using null_sink_latency    = gr::sched::null_sink_latency;
+    using null_sink_latency    = ::gr::sched::null_sink_latency;
 
 
     py::class_<null_sink_latency, gr::sync_block, gr::block, gr::basic_block,
         std::shared_ptr<null_sink_latency>>(m, "null_sink_latency", D(null_sink_latency))
 
         .def(py::init(&null_sink_latency::make),
+           py::arg("item_size"),
+           py::arg("granularity"),
            D(null_sink_latency,make)
         )
         
