@@ -24,6 +24,8 @@ namespace py = pybind11;
 void bind_copy_rand(py::module& m);
 void bind_msg_forward(py::module& m);
 void bind_ncopy(py::module& m);
+    void bind_null_source_latency(py::module& m);
+    void bind_null_sink_latency(py::module& m);
 // ) END BINDING_FUNCTION_PROTOTYPES
 
 
@@ -55,5 +57,7 @@ PYBIND11_MODULE(sched_python, m)
     bind_copy_rand(m);
     bind_msg_forward(m);
     bind_ncopy(m);
+    bind_null_source_latency(m);
+    bind_null_sink_latency(m);
     // ) END BINDING_FUNCTION_CALLS
 }

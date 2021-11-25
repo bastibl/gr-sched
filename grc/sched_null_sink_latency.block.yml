@@ -1,0 +1,27 @@
+id: sched_null_sink_latency
+label: Null Sink Latency
+category: '[sched]'
+
+parameters:
+-   id: type
+    label: Input Type
+    dtype: enum
+    options: [complex, float, int, short, byte]
+    option_attributes:
+        size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int, gr.sizeof_short,
+            gr.sizeof_char]
+    hide: part
+- id: granularity
+  label: Granularity
+  dtype: int
+  default: 32768
+
+inputs:
+-   domain: stream
+    dtype: ${ type }
+
+templates:
+  imports: import sched
+  make: sched.null_sink_latency(${type.size}, ${granularity})
+
+file_format: 1

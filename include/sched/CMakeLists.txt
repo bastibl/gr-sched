@@ -13,5 +13,7 @@ install(FILES
     api.h
     ncopy.h
     msg_forward.h
-    copy_rand.h DESTINATION include/sched
+    copy_rand.h
+    null_source_latency.h
+    null_sink_latency.h DESTINATION include/sched
 )

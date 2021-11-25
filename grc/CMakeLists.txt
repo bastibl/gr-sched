@@ -9,5 +9,7 @@
 install(FILES
     sched_ncopy.block.yml
     sched_msg_forward.block.yml
-    sched_copy_rand.block.yml DESTINATION share/gnuradio/grc/blocks
+    sched_copy_rand.block.yml
+    sched_null_source_latency.block.yml
+    sched_null_sink_latency.block.yml DESTINATION share/gnuradio/grc/blocks
 )

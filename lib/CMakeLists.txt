@@ -11,10 +11,19 @@
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
 
+include (FindLTTngUST REQUIRED)
+
+include_directories(.)
+# add_library(tracepoint-provider STATIC tp.cpp)
+# target_link_libraries(tracepoint-provider LTTng::UST)
+
 list(APPEND sched_sources
-    ncopy_impl.cc
-    msg_forward_impl.cc
     copy_rand_impl.cc
+    msg_forward_impl.cc
+    ncopy_impl.cc
+    null_sink_latency_impl.cc
+    null_source_latency_impl.cc
+    tp.cpp
 )
 
 set(sched_sources "${sched_sources}" PARENT_SCOPE)
@@ -24,7 +33,10 @@ if(NOT sched_sources)
 endif(NOT sched_sources)
 
 add_library(gnuradio-sched SHARED ${sched_sources})
-target_link_libraries(gnuradio-sched gnuradio::gnuradio-runtime)
+target_link_libraries(gnuradio-sched
+    gnuradio::gnuradio-runtime
+    LTTng::UST
+  )
 target_include_directories(gnuradio-sched
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
     PUBLIC $<INSTALL_INTERFACE:include>
