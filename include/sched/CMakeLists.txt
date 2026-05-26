@@ -14,6 +14,7 @@ install(FILES
     ncopy.h
     msg_forward.h
     copy_rand.h
+    copy_n.h
     null_source_latency.h
     null_sink_latency.h DESTINATION include/sched
 )

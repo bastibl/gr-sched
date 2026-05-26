@@ -30,8 +30,11 @@ include(GrPybind)
 
 list(APPEND sched_python_files
     copy_rand_python.cc
+    copy_n_python.cc
     msg_forward_python.cc
     ncopy_python.cc
+    null_sink_latency_python.cc
+    null_source_latency_python.cc
     python_bindings.cc
     )
 

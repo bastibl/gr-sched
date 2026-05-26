@@ -1,0 +1,27 @@
+id: sched_copy_n
+label: copy_n
+category: '[sched]'
+
+templates:
+  imports: import sched
+  make: sched.copy_n(${item_size}, ${n})
+
+parameters:
+- id: item_size
+  label: item_size
+  dtype: int
+- id: n
+  label: n
+  dtype: int
+
+inputs:
+- label: in
+  domain: stream
+  dtype: byte
+
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+
+file_format: 1
