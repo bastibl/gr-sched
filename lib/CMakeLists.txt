@@ -17,7 +17,9 @@ include_directories(.)
 list(APPEND sched_sources
     copy_rand_impl.cc
     copy_n_impl.cc
+    msg_burst_impl.cc
     msg_forward_impl.cc
+    msg_sink_impl.cc
     ncopy_impl.cc
     null_sink_latency_impl.cc
     null_source_latency_impl.cc

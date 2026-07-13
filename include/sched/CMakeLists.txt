@@ -12,7 +12,9 @@
 install(FILES
     api.h
     ncopy.h
+    msg_burst.h
     msg_forward.h
+    msg_sink.h
     copy_rand.h
     copy_n.h
     null_source_latency.h
